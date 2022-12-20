@@ -1,41 +1,53 @@
 package com.capgemini.airport.airplane;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Airport {
 
-    String nameAirport;
-    ArrayList<Airplane> airplanes = new ArrayList<>();
-
-    public Airport() {
-    }
+    private String nameAirport;
+    private ArrayList<PassengerPlane> passengerPlanes = new ArrayList<>();
 
     public Airport(String nameAirport) {
         this.nameAirport = nameAirport;
     }
 
-    public Airplane addAirplane(Airplane airplane) {
-        airplanes.add(airplane);
-        return airplane;
+    public PassengerPlane addAirplane(PassengerPlane passengerPlane) {
+        passengerPlanes.add(passengerPlane);
+        return passengerPlane;
     }
 
-    public ArrayList<Airplane> findAllAirplanes() {
+    public void printAirplanes() {
         System.out.println("Available fleet on " + nameAirport + ": ");
-        for (int i = 0; i < airplanes.size(); i++) {
-            System.out.println(airplanes.get(i));
+        for (PassengerPlane passengerPlane : passengerPlanes) {
+            System.out.println(passengerPlane);
         }
-        return null;
+        System.out.println();
     }
 
-    public ArrayList<Airplane> getAvailableSeats() {
-        for (int i = 0; i < airplanes.size(); i++) {
-            System.out.println("Flight " + airplanes.get(i) + " has got seats nmb of seats available");
-
+    public ArrayList<PassengerPlane> getAvailableAirplane() {
+        ArrayList<PassengerPlane> availablePassengerPlanes = new ArrayList<>();
+        for (PassengerPlane passengerPlane : passengerPlanes) {
+            if (passengerPlane.isAvailable()) {
+                System.out.println("Plane " + passengerPlane + " is available");
+                System.out.println("There are still " + passengerPlane.availableSeatsOnAirplane() + " seats available.\n");
+                availablePassengerPlanes.add(passengerPlane);
+            } else {
+                System.out.println(passengerPlane + " is flying. Wait for the plane to be landed to board passengers.\n");
+            }
         }
-        return null;
+        return availablePassengerPlanes;
     }
+
+//    public int boardPassengers() {
+//        for (Airplane airplane : airplanes) {
+//            if ()
+//        }
+//        // als het vliegtuig beschikbaar is (niet vliegt) && numbPassengers < maxPas
+//        // sout."plane 'planeID' is available"
+//        // sout."there are still 'nmb of seats' seats available on the plane."
+//        return numPassengers; //aanpassen
+//    }
+
 
 }
 

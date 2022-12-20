@@ -1,6 +1,6 @@
 package com.capgemini.airport.airplane;
 
-public class Airplane {
+public class PassengerPlane extends AirPlane {
     private final static int DEFAULT_AMOUNT_PASSENGERS = 0;
     private final static boolean DEFAULT_FLYING_STATUS = false;
 
@@ -10,18 +10,7 @@ public class Airplane {
     private boolean isFlying;
     private int cruiseSpeed;
 
-    public Airplane() {
-    }
-
-    public Airplane(String planeIdentification, int maxPassengers, int currentPassengers, boolean isFlying, int cruiseSpeed) {
-        this.planeIdentification = planeIdentification;
-        this.maxPassengers = maxPassengers;
-        this.currentPassengers = DEFAULT_AMOUNT_PASSENGERS;
-        this.isFlying = DEFAULT_FLYING_STATUS;
-        this.cruiseSpeed = 0;
-    }
-
-    public Airplane(String planeIdentification, int maxPassengers) {
+    public PassengerPlane(String planeIdentification, int maxPassengers) {
         // attributen zonder input parameter (defaults)
         this.currentPassengers = DEFAULT_AMOUNT_PASSENGERS;
         this.isFlying = DEFAULT_FLYING_STATUS;
@@ -31,6 +20,12 @@ public class Airplane {
         this.planeIdentification = planeIdentification;
         this.maxPassengers = maxPassengers;
 
+    }
+
+    public PassengerPlane(String planeIdentification, int currentPassengers, int maxPassengers) {
+        this.planeIdentification = planeIdentification;
+        this.currentPassengers = currentPassengers;
+        this.maxPassengers = maxPassengers;
     }
 
     public void boardPassengers(int boardPassengers) {
@@ -83,6 +78,19 @@ public class Airplane {
             // is landed
             System.out.println("The plane has landed");
         }
+    }
+
+    public boolean isAvailable() {
+        if (!this.isFlying && (currentPassengers < maxPassengers)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int availableSeatsOnAirplane() {
+        int seatsAvailable = maxPassengers - currentPassengers;
+        return seatsAvailable;
     }
 
     @Override
