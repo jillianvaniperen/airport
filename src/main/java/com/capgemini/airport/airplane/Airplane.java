@@ -13,6 +13,14 @@ public class Airplane {
     public Airplane() {
     }
 
+    public Airplane(String planeIdentification, int maxPassengers, int currentPassengers, boolean isFlying, int cruiseSpeed) {
+        this.planeIdentification = planeIdentification;
+        this.maxPassengers = maxPassengers;
+        this.currentPassengers = DEFAULT_AMOUNT_PASSENGERS;
+        this.isFlying = DEFAULT_FLYING_STATUS;
+        this.cruiseSpeed = 0;
+    }
+
     public Airplane(String planeIdentification, int maxPassengers) {
         // attributen zonder input parameter (defaults)
         this.currentPassengers = DEFAULT_AMOUNT_PASSENGERS;
@@ -45,11 +53,11 @@ public class Airplane {
         System.out.println(planeIdentification + " discharges " + currentPassengers + " passengers.\n");
     }
 
-    public void checkFlyingStatus() {
-        if (isFlying) {
+    public void isFlyingStatus() {
+        if (this.isFlying == true) {
             System.out.println("Plane is flying");
         } else {
-            System.out.println("Ready for take off");
+            System.out.println("Plane is not flying");
         }
     }
 
@@ -61,9 +69,7 @@ public class Airplane {
             // is not flying
             this.isFlying = true;
             // is now flying
-
             System.out.println(planeIdentification + " has taken off!");
-//        System.out.println("The plane took off");
         }
     }
 
@@ -79,30 +85,17 @@ public class Airplane {
         }
     }
 
-//    @Override
-//    public String toString() {
-//        return planeIdentification + " boards " + currentPassengers + " passengers, " + overloadPassengers + " can not be seated. \n"
-//                + planeIdentification + " discharges " + currentPassengers + " passengers.\n";
-//
-
-//                "Airplane " + planeIdentification + " boards " + currentPassengers + " passengers.\n"
-//                + "Airplane " + planeIdentification + " takes off.\n"
-//                + "Airplane " + planeIdentification + " lands.\n"
-//                + "Airplane " + planeIdentification + " discharges " + currentPassengers + " passengers.\n";
+    @Override
+    public String toString() {
+        return planeIdentification;
+    }
 }
 
 
 
-//    public boolean boardPassenger(Passenger passenger) {
-//        if (passengers.size() == maxPassengers) {
-//            System.out.println("Max capacity reached. Ready for take off");
-//            return false;
-//        } else {
-//            this.passengers.add(passenger);
-//            passenger.toString().length();
-//            return true;
-//        }
-//    }
+
+
+
 
 
 
