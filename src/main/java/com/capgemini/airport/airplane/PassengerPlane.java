@@ -1,29 +1,29 @@
 package com.capgemini.airport.airplane;
 
-public class PassengerPlane extends AirPlane {
+public class PassengerPlane extends Airplane {
     private final static int DEFAULT_AMOUNT_PASSENGERS = 0;
     private final static boolean DEFAULT_FLYING_STATUS = false;
 
-    private String planeIdentification;
     private int maxPassengers;
     private int currentPassengers;
     private boolean isFlying;
     private int cruiseSpeed;
 
     public PassengerPlane(String planeIdentification, int maxPassengers) {
+        super(planeIdentification);
+
         // attributen zonder input parameter (defaults)
         this.currentPassengers = DEFAULT_AMOUNT_PASSENGERS;
         this.isFlying = DEFAULT_FLYING_STATUS;
         this.cruiseSpeed = 0;
 
         // attributen die je on-the-spot wilt vullen tijdens aanmaken object
-        this.planeIdentification = planeIdentification;
         this.maxPassengers = maxPassengers;
 
     }
 
     public PassengerPlane(String planeIdentification, int currentPassengers, int maxPassengers) {
-        this.planeIdentification = planeIdentification;
+        super(planeIdentification);
         this.currentPassengers = currentPassengers;
         this.maxPassengers = maxPassengers;
     }
@@ -35,17 +35,17 @@ public class PassengerPlane extends AirPlane {
             // some passengers might not fit in plane
             int overloadPassengers = amountPassengers - maxPassengers;
             this.currentPassengers += (boardPassengers - overloadPassengers);
-            System.out.println(planeIdentification + " boards " + maxPassengers + " passengers, " + overloadPassengers + " can not be seated.");
+            System.out.println(getPlaneIdentification() + " boards " + maxPassengers + " passengers, " + overloadPassengers + " can not be seated.");
         } else {
             // passengers fit in plane
             this.currentPassengers += boardPassengers;
-            System.out.println(planeIdentification + " boards " + currentPassengers + " passengers.");
+            System.out.println(getPlaneIdentification() + " boards " + currentPassengers + " passengers.");
         }
     }
 
     public void dischargePassenger() {
         this.currentPassengers = currentPassengers;
-        System.out.println(planeIdentification + " discharges " + currentPassengers + " passengers.\n");
+        System.out.println(getPlaneIdentification() + " discharges " + currentPassengers + " passengers.\n");
     }
 
     public void isFlyingStatus() {
@@ -59,12 +59,12 @@ public class PassengerPlane extends AirPlane {
     public void takeOff() {
         if (this.isFlying == true) {
             // is flying
-            System.out.println(planeIdentification + " can not take off, because we are already flying");
+            System.out.println(getPlaneIdentification() + " can not take off, because we are already flying");
         } else {
             // is not flying
             this.isFlying = true;
             // is now flying
-            System.out.println(planeIdentification + " has taken off!");
+            System.out.println(getPlaneIdentification() + " has taken off!");
         }
     }
 
@@ -95,7 +95,7 @@ public class PassengerPlane extends AirPlane {
 
     @Override
     public String toString() {
-        return planeIdentification;
+        return getPlaneIdentification();
     }
 }
 

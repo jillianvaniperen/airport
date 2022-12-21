@@ -38,15 +38,33 @@ public class Airport {
         System.out.println();
     }
 
-    public ArrayList<PassengerPlane> requestNextAvailablePassengerAirplane() {
+    public PassengerPlane findPassengerPlaneByPlaneId(String planeIdentification) {
+        for (PassengerPlane passengerPlane : passengerPlanes) {
+            if (passengerPlane.getPlaneIdentification().equals(planeIdentification)) {
+                return passengerPlane;
+            }
+        }
+        return null;
+    }
+
+    public CargoPlane findCargoPlaneByPlaneId(String planeIdentification) {
+        for (CargoPlane cargoPlane : cargoPlanes) {
+            if (cargoPlane.getPlaneIdentification().equals(planeIdentification)) {
+                return cargoPlane;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<PassengerPlane> requestAllAvailablePassengerPlanes() {
         ArrayList<PassengerPlane> availablePassengerPlanes = new ArrayList<>();
         for (PassengerPlane passengerPlane : passengerPlanes) {
             if (passengerPlane.isAvailable()) {
-                System.out.println("Plane " + passengerPlane + " is available.");
-                System.out.println("There are still " + passengerPlane.availableSeatsOnAirplane() + " empty seats.\n");
+//                System.out.println("Plane " + passengerPlane + " is available.");
+//                System.out.println("There are still " + passengerPlane.availableSeatsOnAirplane() + " empty seats.\n");
                 availablePassengerPlanes.add(passengerPlane);
             } else {
-                System.out.println(passengerPlane + " is flying. Wait for the plane to be landed to board passengers.\n");
+//                System.out.println(passengerPlane + " is flying. Wait for the plane to be landed to board passengers.\n");
             }
         }
         return availablePassengerPlanes;
@@ -56,11 +74,11 @@ public class Airport {
         ArrayList<CargoPlane> availableCargoPlanes = new ArrayList<>();
         for (CargoPlane cargoPlane : cargoPlanes) {
             if (cargoPlane.isAvailable()) {
-                System.out.println("Plane " + cargoPlane + " is available.");
-                System.out.println("There is still room to store " + cargoPlane.availableFreightSpace() + " tons of freight.\n");
+//                System.out.println("Plane " + cargoPlane + " is available.");
+//                System.out.println("There is still room to store " + cargoPlane.availableFreightSpace() + " tons of freight.\n");
                 availableCargoPlanes.add(cargoPlane);
             } else {
-                System.out.println(cargoPlane + " is not available.");
+//                System.out.println(cargoPlane + " is not available.");
             }
         }
         return availableCargoPlanes;

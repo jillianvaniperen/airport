@@ -1,8 +1,6 @@
 package com.capgemini.airport.airplane;
 
-import java.util.ArrayList;
-
-public class CargoPlane extends AirPlane {
+public class CargoPlane extends Airplane {
     private int maxCargo;
     private int currentCargo;
 
@@ -58,6 +56,6 @@ public class CargoPlane extends AirPlane {
 
     @Override
     public String toString() {
-        return super.getPlaneIdentification().toString();
+        return getPlaneIdentification();
     }
 }

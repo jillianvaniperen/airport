@@ -1,18 +1,19 @@
 package com.capgemini.airport.airplane;
 
-public class AirPlane {
+public class Airplane {
     private final boolean DEFAULT_FLYING_STATUS = false;
     private String planeIdentification;
     private int cruiseSpeed;
     private boolean isFlying;
 
-    public AirPlane(String planeIdentification, int cruiseSpeed) {
+    public Airplane(String planeIdentification, int cruiseSpeed) {
         this.planeIdentification = planeIdentification;
         this.cruiseSpeed = cruiseSpeed;
         this.isFlying = DEFAULT_FLYING_STATUS;
     }
 
-    public AirPlane() {
+    public Airplane(String planeIdentification) {
+        this.planeIdentification = planeIdentification;
     }
 
     public String getPlaneIdentification() {
