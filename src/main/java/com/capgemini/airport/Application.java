@@ -1,11 +1,13 @@
 package com.capgemini.airport;
 
+import com.capgemini.airport.airplane.CargoPlane;
 import com.capgemini.airport.airplane.PassengerPlane;
 import com.capgemini.airport.airplane.Airport;
 
 public class Application {
     public static void main(String[] args) {
 
+        // Passenger planes
         PassengerPlane passengerPlane1 = new PassengerPlane("KL573", 75);
         passengerPlane1.boardPassengers(100);
         passengerPlane1.takeOff();
@@ -19,12 +21,30 @@ public class Application {
         passengerPlane2.land();
         passengerPlane2.dischargePassenger();
 
+        // Cargo planes
+        CargoPlane cargoPlane1 = new CargoPlane("FED881", 0 , 0, 60);
+        CargoPlane cargoPlane2 = new CargoPlane("FED890", 0 , 0, 20);
+
+        cargoPlane1.loadCargo(45);
+        cargoPlane1.unloadCargo();
+        cargoPlane2.loadCargo(30);
+        cargoPlane2.unloadCargo();
+
+        // Airport
         Airport airport = new Airport("Schiphol");
-        airport.addAirplane(new PassengerPlane("KL945", 70, 95));
-        airport.addAirplane(new PassengerPlane("HV315", 80, 65));
-        airport.addAirplane(new PassengerPlane("HV811", 55, 60));
-        airport.printAirplanes();
-        airport.getAvailableAirplane();
+
+        airport.addPassengerPlane(new PassengerPlane("KL945", 80, 95));
+        airport.addPassengerPlane(new PassengerPlane("HV315", 85, 65));
+        airport.addPassengerPlane(new PassengerPlane("HV811", 43, 60));
+
+        airport.addCargoPlane(new CargoPlane("FED543", 0, 56, 75));
+        airport.addCargoPlane(new CargoPlane("DHL041", 0, 31, 25));
+
+        airport.printPassengerAirplanes();
+        airport.printCargoAirplanes();
+
+        airport.requestNextAvailablePassengerAirplane();
+        airport.requestNextAvailableCargoAirplane();
 
 
 
@@ -33,9 +53,6 @@ public class Application {
 
 
 
-
-
-//        airport.getAvailableAirplane();
 
 
     }

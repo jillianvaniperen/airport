@@ -44,7 +44,7 @@ public class PassengerPlane extends AirPlane {
     }
 
     public void dischargePassenger() {
-        currentPassengers = currentPassengers;
+        this.currentPassengers = currentPassengers;
         System.out.println(planeIdentification + " discharges " + currentPassengers + " passengers.\n");
     }
 

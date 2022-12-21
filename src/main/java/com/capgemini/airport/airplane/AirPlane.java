@@ -2,12 +2,12 @@ package com.capgemini.airport.airplane;
 
 public class AirPlane {
     private final boolean DEFAULT_FLYING_STATUS = false;
-    private String airplaneIdentification;
+    private String planeIdentification;
     private int cruiseSpeed;
     private boolean isFlying;
 
-    public AirPlane(String airplaneIdentification, int cruiseSpeed) {
-        this.airplaneIdentification = airplaneIdentification;
+    public AirPlane(String planeIdentification, int cruiseSpeed) {
+        this.planeIdentification = planeIdentification;
         this.cruiseSpeed = cruiseSpeed;
         this.isFlying = DEFAULT_FLYING_STATUS;
     }
@@ -15,19 +15,19 @@ public class AirPlane {
     public AirPlane() {
     }
 
-    public String getAirplaneIdentification() {
-        return airplaneIdentification;
+    public String getPlaneIdentification() {
+        return planeIdentification;
     }
 
     public void takeOff() {
         if (this.isFlying == true) {
             // is flying
-            System.out.println(airplaneIdentification + " can not take off, because we are already flying");
+            System.out.println(planeIdentification + " can not take off, because we are already flying");
         } else {
             // is not flying
             this.isFlying = true;
             // is now flying
-            System.out.println(airplaneIdentification + " has taken off!");
+            System.out.println(planeIdentification + " has taken off!");
         }
     }
 
@@ -41,5 +41,10 @@ public class AirPlane {
             // is landed
             System.out.println("The plane has landed");
         }
+    }
+
+    @Override
+    public String toString() {
+        return planeIdentification;
     }
 }

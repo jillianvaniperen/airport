@@ -6,30 +6,44 @@ public class Airport {
 
     private String nameAirport;
     private ArrayList<PassengerPlane> passengerPlanes = new ArrayList<>();
+    private ArrayList<CargoPlane> cargoPlanes = new ArrayList<>();
 
     public Airport(String nameAirport) {
         this.nameAirport = nameAirport;
     }
 
-    public PassengerPlane addAirplane(PassengerPlane passengerPlane) {
+    public PassengerPlane addPassengerPlane(PassengerPlane passengerPlane) {
         passengerPlanes.add(passengerPlane);
         return passengerPlane;
     }
 
-    public void printAirplanes() {
-        System.out.println("Available fleet on " + nameAirport + ": ");
+    public CargoPlane addCargoPlane(CargoPlane cargoPlane) {
+        cargoPlanes.add(cargoPlane);
+        return cargoPlane;
+    }
+
+    public void printPassengerAirplanes() {
+        System.out.println("Available fleet of passenger planes on " + nameAirport + ": ");
         for (PassengerPlane passengerPlane : passengerPlanes) {
             System.out.println(passengerPlane);
         }
         System.out.println();
     }
 
-    public ArrayList<PassengerPlane> getAvailableAirplane() {
+    public void printCargoAirplanes() {
+        System.out.println("Available fleet of cargo planes on " + nameAirport + ": ");
+        for (CargoPlane cargoPlane : cargoPlanes) {
+            System.out.println(cargoPlane);
+        }
+        System.out.println();
+    }
+
+    public ArrayList<PassengerPlane> requestNextAvailablePassengerAirplane() {
         ArrayList<PassengerPlane> availablePassengerPlanes = new ArrayList<>();
         for (PassengerPlane passengerPlane : passengerPlanes) {
             if (passengerPlane.isAvailable()) {
-                System.out.println("Plane " + passengerPlane + " is available");
-                System.out.println("There are still " + passengerPlane.availableSeatsOnAirplane() + " seats available.\n");
+                System.out.println("Plane " + passengerPlane + " is available.");
+                System.out.println("There are still " + passengerPlane.availableSeatsOnAirplane() + " empty seats.\n");
                 availablePassengerPlanes.add(passengerPlane);
             } else {
                 System.out.println(passengerPlane + " is flying. Wait for the plane to be landed to board passengers.\n");
@@ -38,16 +52,19 @@ public class Airport {
         return availablePassengerPlanes;
     }
 
-//    public int boardPassengers() {
-//        for (Airplane airplane : airplanes) {
-//            if ()
-//        }
-//        // als het vliegtuig beschikbaar is (niet vliegt) && numbPassengers < maxPas
-//        // sout."plane 'planeID' is available"
-//        // sout."there are still 'nmb of seats' seats available on the plane."
-//        return numPassengers; //aanpassen
-//    }
-
+    public ArrayList<CargoPlane> requestNextAvailableCargoAirplane() {
+        ArrayList<CargoPlane> availableCargoPlanes = new ArrayList<>();
+        for (CargoPlane cargoPlane : cargoPlanes) {
+            if (cargoPlane.isAvailable()) {
+                System.out.println("Plane " + cargoPlane + " is available.");
+                System.out.println("There is still room to store " + cargoPlane.availableFreightSpace() + " tons of freight.\n");
+                availableCargoPlanes.add(cargoPlane);
+            } else {
+                System.out.println(cargoPlane + " is not available.");
+            }
+        }
+        return availableCargoPlanes;
+    }
 
 }
 
